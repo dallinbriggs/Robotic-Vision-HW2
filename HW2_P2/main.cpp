@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 {
     Mat image;
     Mat image_color;
-    int channels;
     vector<Point2f> corners;
     Size patternsize;
     string filename;
@@ -58,7 +57,6 @@ int main(int argc, char *argv[])
             cornerSubPix(image,corners,winSize,zeroZone,criteria);
             imagePoints.push_back(corners);
 //            objectPoints.resize(imagePoints.size(),objectPoints[0]);
-
 
             objectPoints.push_back(obj);
 
