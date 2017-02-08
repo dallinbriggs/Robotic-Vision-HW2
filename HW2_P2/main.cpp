@@ -72,13 +72,16 @@ int main(int argc, char *argv[])
     calibrateCamera(objectPoints,imagePoints,image.size(),cameraMatrix,distCoeffs,rvecs,tvecs,0);
     cout << cameraMatrix << endl;
     cout << distCoeffs << endl;
-    stringstream buffer;
-    buffer << cameraMatrix << endl;
-    buffer << distCoeffs;
-    string fileOutName = "/home/dallin/robotic_vision/HW2/HW2_P2/Intrinsic_Parameters";
-    fileOutput.open(fileOutName,fstream::out);
-    fileOutput << buffer.str();
-    fileOutput.close();
+//    stringstream buffer;
+//    buffer << cameraMatrix << endl;
+//    buffer << distCoeffs;
+//    string fileOutName = "/home/dallin/robotic_vision/HW2/HW2_P2/Intrinsic_Parameters";
+//    fileOutput.open(fileOutName,fstream::out);
+//    fileOutput << buffer.str();
+//    fileOutput.close();
+    FileStorage fs("Intrinsic_calibration.xml", FileStorage::WRITE);
+    fs << "CameraMatrix" << cameraMatrix;
+    fs << "DistortionCoefficients" << distCoeffs;
 
 
     waitKey(0);
