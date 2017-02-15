@@ -12,12 +12,6 @@ int main(int argc, char *argv[])
     Mat image;
     Mat image_undistort;
     Mat image_diff;
-    vector<Point2f> corners;
-    Size patternsize;
-    string filename;
-    string header;
-    string tail;
-    Size imageSize;
     Mat distCoeffs;
     Mat rvec;
     Mat tvec;
@@ -43,12 +37,14 @@ int main(int argc, char *argv[])
         cout << "Error in solving PNP" << endl;
         return -1;
     }
-    image = imread("/home/dallin/robotic_vision/HW2/HW2_P4/Object_with_Corners.jpg",CV_LOAD_IMAGE_GRAYSCALE);
-    undistort(image,image_undistort,cameraMatrix,distCoeffs,noArray());
-    absdiff(image_undistort,image,image_diff);
-    imshow("Briggs",image);
 
-
+    FileStorage fs3("Extrinsic_calibration.xml", FileStorage::WRITE);
+    fs3 << "RotationMatrix" << rvec;
+    fs3 << "TranslationVector" << tvec;
+//    image = imread("/home/dallin/robotic_vision/HW2/HW2_P4/Object_with_Corners.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+//    undistort(image,image_undistort,cameraMatrix,distCoeffs,noArray());
+//    absdiff(image_undistort,image,image_diff);
+//    imshow("Briggs",image_diff);
 
     waitKey(0);
 

@@ -21,7 +21,6 @@ int main(int argc, char *argv[])
     vector<Mat> rvecs;
     vector<Mat> tvecs;
     Mat cameraMatrix;
-    fstream fileOutput;
 
     cameraMatrix = Mat::eye(3, 3, CV_64F);
 
@@ -56,8 +55,6 @@ int main(int argc, char *argv[])
             TermCriteria criteria = TermCriteria( CV_TERMCRIT_EPS + CV_TERMCRIT_ITER, 40, 0.001 );
             cornerSubPix(image,corners,winSize,zeroZone,criteria);
             imagePoints.push_back(corners);
-//            objectPoints.resize(imagePoints.size(),objectPoints[0]);
-
             objectPoints.push_back(obj);
 
         }
@@ -65,24 +62,16 @@ int main(int argc, char *argv[])
         imshow("Briggs", image_color);
         waitKey(50);
 
-//        objectPoints->push_back(corners);
     }
 
 
     calibrateCamera(objectPoints,imagePoints,image.size(),cameraMatrix,distCoeffs,rvecs,tvecs,0);
     cout << cameraMatrix << endl;
     cout << distCoeffs << endl;
-//    stringstream buffer;
-//    buffer << cameraMatrix << endl;
-//    buffer << distCoeffs;
-//    string fileOutName = "/home/dallin/robotic_vision/HW2/HW2_P2/Intrinsic_Parameters";
-//    fileOutput.open(fileOutName,fstream::out);
-//    fileOutput << buffer.str();
-//    fileOutput.close();
+
     FileStorage fs("Intrinsic_calibration.xml", FileStorage::WRITE);
     fs << "CameraMatrix" << cameraMatrix;
     fs << "DistortionCoefficients" << distCoeffs;
-
 
     waitKey(0);
 

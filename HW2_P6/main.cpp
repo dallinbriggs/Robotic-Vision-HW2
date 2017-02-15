@@ -22,16 +22,17 @@ int main(int argc, char *argv[])
     vector<Mat> rvecs;
     vector<Mat> tvecs;
     Mat cameraMatrix;
-    FileStorage fs("/home/dallin/robotic_vision/HW2/HW2_P3/Intrinsic_calibration.xml", FileStorage::READ);
+    FileStorage fs("/home/dallin/robotic_vision/HW2/HW2_P6/Intrinsic_calibration.xml", FileStorage::READ);
     fs["CameraMatrix"] >> cameraMatrix;
     fs["DistortionCoefficients"] >> distCoeffs;
 
-    image = imread("/home/dallin/robotic_vision/HW2/HW2_P3/Turned.jpg",CV_LOAD_IMAGE_GRAYSCALE);
+    image = imread("/home/dallin/robotic_vision/HW2/HW2_P5/Images/20.jpg",CV_LOAD_IMAGE_GRAYSCALE);
     undistort(image,image_undistort,cameraMatrix,distCoeffs,noArray());
     absdiff(image_undistort,image,image_diff);
     imshow("Briggs",image_diff);
 
-    imwrite("Turned_diff.jpg",image_diff);
+    imwrite("Calibration_diff.jpg",image_diff);
+
 
     waitKey(0);
 

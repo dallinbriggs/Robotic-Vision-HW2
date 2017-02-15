@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 
     drawChessboardCorners(image_color,patternsize,corners,corners_detected);
     imshow("Briggs", image_color);
+    imwrite("chessboard_circles.jpg", image_color);
 
     waitKey(0);
 

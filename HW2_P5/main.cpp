@@ -89,7 +89,6 @@ int main(int argc, char *argv[])
         imshow("Briggs", image_color);
         waitKey(50);
 
-
     }
 
 

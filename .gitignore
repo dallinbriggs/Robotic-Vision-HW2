@@ -1,3 +1,6 @@
 *.user
 build-*
 HW2_P5/Images/
+*.zip
+HW2_Tex/
+HW2_Turnin/
